@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        
+
         {/* Protected Dashboard Routes */}
         <Route element={<DashboardLayout />}>
           <Route path="/" element={<Dashboard />} />
@@ -17,7 +17,7 @@ function App() {
           <Route path="/users" element={<div className="p-4">Users Page Placeholder</div>} />
           <Route path="/settings" element={<div className="p-4">Settings Page Placeholder</div>} />
         </Route>
-        
+
         {/* Catch-all redirect to dashboard */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
