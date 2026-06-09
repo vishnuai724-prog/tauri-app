@@ -103,7 +103,6 @@ export default function Updater() {
   const toMB = (bytes: number) => (bytes / 1024 / 1024).toFixed(1);
 
   const isOpen = status !== "idle" && status !== "checking";
-
   return (
     <Dialog open={isOpen} onOpenChange={(open) => {
       if (!open && status !== "downloading" && status !== "installing") {
