@@ -64,7 +64,7 @@ export default function Updater() {
   }, [checkForUpdates]);
 
   async function handleUpdate() {
-    if (!update) return;
+    if (!update) {return;}
     setError(null);
     setDownloaded(0);
     setContentLength(null);
@@ -110,7 +110,7 @@ export default function Updater() {
         setStatus("idle");
       }
     }}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-106.25">
         {status === "error" && !update ? (
           <>
             <DialogHeader>
