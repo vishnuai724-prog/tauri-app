@@ -1,0 +1,117 @@
+.updater-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.updater-modal {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  color: #333;
+  text-align: left;
+}
+
+@media (prefers-color-scheme: dark) {
+  .updater-modal {
+    background: #2a2a2a;
+    color: #f5f5f5;
+  }
+}
+
+.updater-modal h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.updater-release-notes {
+  margin-top: 12px;
+  background: #f0f0f0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.9em;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .updater-release-notes {
+    background: #1a1a1a;
+  }
+}
+
+.updater-release-notes pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: inherit;
+}
+
+.updater-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  justify-content: flex-end;
+}
+
+.updater-btn-primary {
+  background: #396cd8;
+  color: white;
+  border: none;
+}
+
+.updater-btn-primary:hover {
+  background: #2a52a8;
+}
+
+.updater-btn-secondary {
+  background: transparent;
+  border: 1px solid #ccc;
+}
+
+.updater-btn-secondary:hover {
+  background: #f0f0f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .updater-btn-secondary:hover {
+    background: #444;
+  }
+}
+
+.updater-progress {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.updater-progress progress {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.updater-error {
+  color: #d32f2f;
+  background: #ffebee;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .updater-error {
+    background: #4a1a1a;
+    color: #ffb4ab;
+  }
+}

@@ -1,0 +1,4 @@
+# Clippy configuration for enterprise-grade Rust hygiene
+cognitive-complexity-threshold = 30
+type-complexity-threshold = 350
+too-many-arguments-threshold = 8
