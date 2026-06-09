@@ -11,7 +11,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { toast } from "sonner";
 
 type Status = "checking" | "idle" | "available" | "downloading" | "installing" | "error" | "up-to-date";
 
