@@ -12,7 +12,14 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-type Status = "checking" | "idle" | "available" | "downloading" | "installing" | "error" | "up-to-date";
+type Status =
+  | "checking"
+  | "idle"
+  | "available"
+  | "downloading"
+  | "installing"
+  | "error"
+  | "up-to-date";
 
 export default function Updater() {
   const [status, setStatus] = useState<Status>("idle");
@@ -115,7 +122,9 @@ export default function Updater() {
           <>
             <DialogHeader>
               <DialogTitle>Checking for Updates</DialogTitle>
-              <DialogDescription>Please wait while we check for the latest version...</DialogDescription>
+              <DialogDescription>
+                Please wait while we check for the latest version...
+              </DialogDescription>
             </DialogHeader>
             <div className="py-8 flex justify-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
@@ -125,7 +134,9 @@ export default function Updater() {
           <>
             <DialogHeader>
               <DialogTitle>Up to Date</DialogTitle>
-              <DialogDescription>You are already running the latest version of QLIMS.</DialogDescription>
+              <DialogDescription>
+                You are already running the latest version of QLIMS.
+              </DialogDescription>
             </DialogHeader>
             <DialogFooter>
               <Button onClick={() => setStatus("idle")}>Close</Button>
