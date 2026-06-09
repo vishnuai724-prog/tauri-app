@@ -78,15 +78,13 @@ pub fn run() {
         .setup(|app| {
             #[cfg(desktop)]
             {
-                use tauri::menu::{MenuBuilder, SubmenuBuilder, MenuItemBuilder};
+                use tauri::menu::{MenuBuilder, MenuItemBuilder, SubmenuBuilder};
                 use tauri::Emitter;
-                
+
                 let handle = app.handle();
 
                 // Build custom menus
-                let file_menu = SubmenuBuilder::new(handle, "File")
-                    .quit()
-                    .build()?;
+                let file_menu = SubmenuBuilder::new(handle, "File").quit().build()?;
                 let edit_menu = SubmenuBuilder::new(handle, "Edit")
                     .undo()
                     .redo()
@@ -101,10 +99,12 @@ pub fn run() {
                     .maximize()
                     .close_window()
                     .build()?;
-                
+
                 // Custom About & Update Items
-                let check_update_item = MenuItemBuilder::with_id("check_update", "Check for Updates").build(handle)?;
-                let about_item = MenuItemBuilder::with_id("custom_about", "About QLIMS").build(handle)?;
+                let check_update_item =
+                    MenuItemBuilder::with_id("check_update", "Check for Updates").build(handle)?;
+                let about_item =
+                    MenuItemBuilder::with_id("custom_about", "About QLIMS").build(handle)?;
                 let help_menu = SubmenuBuilder::new(handle, "Help")
                     .item(&check_update_item)
                     .separator()
@@ -114,7 +114,7 @@ pub fn run() {
                 let menu = MenuBuilder::new(handle)
                     .items(&[&file_menu, &edit_menu, &window_menu, &help_menu])
                     .build()?;
-                
+
                 app.set_menu(menu)?;
 
                 // Listen for menu events
