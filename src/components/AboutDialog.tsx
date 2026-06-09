@@ -27,9 +27,7 @@ export function AboutDialog() {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>About QLIMS</DialogTitle>
-          <DialogDescription>
-            Enterprise-grade cross-platform application.
-          </DialogDescription>
+          <DialogDescription>Enterprise-grade cross-platform application.</DialogDescription>
         </DialogHeader>
         <div className="flex flex-col items-center justify-center space-y-4 py-4">
           <div className="h-24 w-24 rounded-xl bg-primary/10 flex items-center justify-center">

@@ -13,13 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 
-type Status =
-  | "checking"
-  | "idle"
-  | "available"
-  | "downloading"
-  | "installing"
-  | "error";
+type Status = "checking" | "idle" | "available" | "downloading" | "installing" | "error";
 
 export default function Updater() {
   const [status, setStatus] = useState<Status>("idle");
@@ -64,7 +58,9 @@ export default function Updater() {
   }, [checkForUpdates]);
 
   async function handleUpdate() {
-    if (!update) {return;}
+    if (!update) {
+      return;
+    }
     setError(null);
     setDownloaded(0);
     setContentLength(null);
@@ -96,19 +92,20 @@ export default function Updater() {
   }
 
   const progressPercent =
-    contentLength && contentLength > 0
-      ? Math.round((downloaded / contentLength) * 100)
-      : null;
+    contentLength && contentLength > 0 ? Math.round((downloaded / contentLength) * 100) : null;
 
   const toMB = (bytes: number) => (bytes / 1024 / 1024).toFixed(1);
 
   const isOpen = status !== "idle" && status !== "checking";
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => {
-      if (!open && status !== "downloading" && status !== "installing") {
-        setStatus("idle");
-      }
-    }}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={(open) => {
+        if (!open && status !== "downloading" && status !== "installing") {
+          setStatus("idle");
+        }
+      }}
+    >
       <DialogContent className="sm:max-w-106.25">
         {status === "error" && !update ? (
           <>
@@ -127,8 +124,8 @@ export default function Updater() {
             <DialogHeader>
               <DialogTitle>Update Available 🎉</DialogTitle>
               <DialogDescription>
-                Version <strong className="text-foreground">{update?.version}</strong> is ready. You are on{" "}
-                <strong className="text-foreground">{update?.currentVersion}</strong>.
+                Version <strong className="text-foreground">{update?.version}</strong> is ready. You
+                are on <strong className="text-foreground">{update?.currentVersion}</strong>.
               </DialogDescription>
             </DialogHeader>
 
@@ -143,13 +140,17 @@ export default function Updater() {
               )}
 
               {status === "error" && (
-                <p className="text-sm text-destructive font-medium bg-destructive/10 p-3 rounded-md border border-destructive/20">{error}</p>
+                <p className="text-sm text-destructive font-medium bg-destructive/10 p-3 rounded-md border border-destructive/20">
+                  {error}
+                </p>
               )}
 
               {status === "downloading" && (
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm font-medium">
-                    <span>Downloading {progressPercent !== null ? `— ${progressPercent}%` : "..."}</span>
+                    <span>
+                      Downloading {progressPercent !== null ? `— ${progressPercent}%` : "..."}
+                    </span>
                     {contentLength !== null && (
                       <span className="text-muted-foreground">
                         {toMB(downloaded)} / {toMB(contentLength)} MB

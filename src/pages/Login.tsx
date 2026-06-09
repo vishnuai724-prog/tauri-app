@@ -32,7 +32,7 @@ export default function Login() {
   const onSubmit = async (data: LoginFormValues) => {
     // Simulate an API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    
+
     // Dummy authentication success
     login({
       id: "usr_123",
@@ -56,7 +56,7 @@ export default function Login() {
           alt="Laboratory Network"
           className="absolute inset-0 h-full w-full object-cover scale-105 animate-in fade-in zoom-in duration-1000"
         />
-        
+
         {/* Floating Decorative Elements */}
         <div className="absolute bottom-12 left-12 z-30 space-y-4">
           <div className="flex items-center gap-3">
@@ -66,8 +66,8 @@ export default function Login() {
             <h1 className="text-4xl font-extrabold text-white tracking-tight">QLIMS</h1>
           </div>
           <p className="text-lg text-slate-300 max-w-md font-medium leading-relaxed">
-            The next generation of laboratory information management. 
-            Connect, analyze, and accelerate your clinical workflows.
+            The next generation of laboratory information management. Connect, analyze, and
+            accelerate your clinical workflows.
           </p>
         </div>
       </div>
@@ -75,7 +75,6 @@ export default function Login() {
       {/* Right side: Login Panel */}
       <div className="flex flex-col items-center justify-center p-8 lg:p-12">
         <div className="w-full max-w-95 space-y-8 animate-in slide-in-from-bottom-8 fade-in duration-700">
-          
           <div className="text-center lg:text-left">
             <div className="flex lg:hidden justify-center mb-6">
               <div className="p-3 bg-blue-900/30 border border-blue-500/20 rounded-2xl shadow-[0_0_20px_rgba(59,130,246,0.15)]">
@@ -91,7 +90,9 @@ export default function Login() {
           <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl shadow-2xl">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-slate-300 font-medium">Network Email</Label>
+                <Label htmlFor="email" className="text-slate-300 font-medium">
+                  Network Email
+                </Label>
                 <Input
                   id="email"
                   type="email"
@@ -99,15 +100,18 @@ export default function Login() {
                   className="h-10 bg-slate-950/50 border-slate-700 text-white placeholder:text-slate-500 focus-visible:ring-cyan-500 text-sm"
                   {...register("email")}
                 />
-                {errors.email && (
-                  <p className="text-xs text-red-400">{errors.email.message}</p>
-                )}
+                {errors.email && <p className="text-xs text-red-400">{errors.email.message}</p>}
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password" className="text-slate-300 font-medium">Passphrase</Label>
-                  <a href="#" className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors">
+                  <Label htmlFor="password" className="text-slate-300 font-medium">
+                    Passphrase
+                  </Label>
+                  <a
+                    href="#"
+                    className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >
                     Recovery options
                   </a>
                 </div>
@@ -123,9 +127,9 @@ export default function Login() {
                 )}
               </div>
 
-              <Button 
-                type="submit" 
-                className="w-full h-10 mt-2 bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white border-0 shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all hover:shadow-[0_0_25px_rgba(6,182,212,0.6)]" 
+              <Button
+                type="submit"
+                className="w-full h-10 mt-2 bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white border-0 shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all hover:shadow-[0_0_25px_rgba(6,182,212,0.6)]"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
@@ -139,7 +143,7 @@ export default function Login() {
               </Button>
             </form>
           </div>
-          
+
           <p className="text-center text-xs text-slate-500">
             Protected by enterprise-grade encryption. Unauthorized access is strictly prohibited.
           </p>
