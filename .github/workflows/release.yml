@@ -41,7 +41,7 @@ jobs:
           tagName: app-v__VERSION__
           releaseName: "QLIMS v__VERSION__"
           releaseBody: "Automated release via GitHub Actions."
-          releaseDraft: true
+          releaseDraft: false
           prerelease: false
           # This tells the action to automatically generate the latest.json file for the updater!
           includeUpdaterJson: true
