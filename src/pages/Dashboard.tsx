@@ -55,7 +55,7 @@ export default function Dashboard() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* High-density Statistical Overview */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => {
           const Icon = stat.icon;
           const TrendIcon = stat.trendUp ? TrendingUp : TrendingDown;
@@ -66,7 +66,7 @@ export default function Dashboard() {
             >
               {/* Subtle top border gradient highlight */}
               <div
-                className={`absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${stat.trendUp ? "from-emerald-400 to-cyan-400" : "from-red-400 to-amber-400"}`}
+                className={`absolute top-0 left-0 w-full h-0.5 bg-linear-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${stat.trendUp ? "from-emerald-400 to-cyan-400" : "from-red-400 to-amber-400"}`}
               />
 
               <CardContent className="p-5">
@@ -100,7 +100,7 @@ export default function Dashboard() {
         })}
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+      <div className="grid gap-4 grid-cols-1 lg:grid-cols-7">
         {/* Main Data Grid Area */}
         <Card className="lg:col-span-4 shadow-sm border-slate-200/60 dark:border-slate-800/60 bg-white/50 dark:bg-slate-900/50 backdrop-blur-xl">
           <CardHeader className="p-5 pb-0">
@@ -109,7 +109,7 @@ export default function Dashboard() {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-5">
-            <div className="flex flex-col items-center justify-center h-[300px] bg-slate-50/50 dark:bg-slate-950/50 rounded-xl border border-dashed border-slate-200 dark:border-slate-800">
+            <div className="flex flex-col items-center justify-center h-75 bg-slate-50/50 dark:bg-slate-950/50 rounded-xl border border-dashed border-slate-200 dark:border-slate-800">
               <TestTube2 className="w-8 h-8 text-slate-300 dark:text-slate-700 mb-3" />
               <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
                 Data Grid Initialization Pending

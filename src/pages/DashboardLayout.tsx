@@ -1,4 +1,5 @@
 import { Outlet, Navigate, Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 import { useAuthStore } from "@/store/useAuthStore";
 import {
   FlaskConical,
@@ -9,6 +10,8 @@ import {
   LogOut,
   Bell,
   Search,
+  Menu,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +20,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 export default function DashboardLayout() {
   const { isAuthenticated, user, logout } = useAuthStore();
   const location = useLocation();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
@@ -30,16 +34,38 @@ export default function DashboardLayout() {
   ];
 
   return (
-    <div className="flex h-screen bg-slate-50 dark:bg-slate-950 font-sans selection:bg-cyan-500/30">
+    <div className="flex h-screen bg-slate-50 dark:bg-slate-950 font-sans selection:bg-cyan-500/30 overflow-hidden relative">
+      {/* Mobile Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 lg:hidden transition-opacity"
+          onClick={() => setIsSidebarOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Sidebar - Premium Glassmorphic Design */}
-      <aside className="w-64 bg-white/80 dark:bg-slate-950/80 backdrop-blur-2xl border-r border-slate-200/50 dark:border-slate-800/50 flex flex-col z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)] dark:shadow-[4px_0_24px_rgba(0,0,0,0.2)]">
-        <div className="p-6 flex items-center gap-3">
-          <div className="p-2 bg-linear-to-br from-cyan-500 to-blue-600 rounded-xl shadow-[0_0_15px_rgba(6,182,212,0.4)]">
-            <FlaskConical className="w-5 h-5 text-white" />
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-72 lg:w-64 bg-white/90 dark:bg-slate-950/90 backdrop-blur-2xl border-r border-slate-200/50 dark:border-slate-800/50 flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)] dark:shadow-[4px_0_24px_rgba(0,0,0,0.2)] transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+      >
+        <div className="p-6 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-linear-to-br from-cyan-500 to-blue-600 rounded-xl shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+              <FlaskConical className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+              QLIMS
+            </span>
           </div>
-          <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-            QLIMS
-          </span>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="lg:hidden rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
+            onClick={() => setIsSidebarOpen(false)}
+          >
+            <X className="w-5 h-5 text-slate-500" />
+          </Button>
         </div>
 
         <nav className="flex-1 px-4 space-y-1.5 mt-2">
@@ -50,9 +76,10 @@ export default function DashboardLayout() {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`group flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ${isActive
-                    ? "bg-cyan-50 dark:bg-cyan-950/30 text-cyan-700 dark:text-cyan-400 font-medium shadow-sm"
-                    : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/50"
+                onClick={() => setIsSidebarOpen(false)}
+                className={`group flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ${isActive
+                  ? "bg-cyan-50 dark:bg-cyan-950/30 text-cyan-700 dark:text-cyan-400 font-medium shadow-sm"
+                  : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/50"
                   }`}
               >
                 <Icon
@@ -100,9 +127,17 @@ export default function DashboardLayout() {
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 dark:bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none" />
 
         {/* Top Header */}
-        <header className="h-16 bg-white/60 dark:bg-slate-950/60 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between px-8 z-10 sticky top-0">
-          <div className="flex items-center gap-4">
-            <h1 className="text-lg font-semibold text-slate-800 dark:text-slate-100 tracking-tight">
+        <header className="h-16 bg-white/60 dark:bg-slate-950/60 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between px-4 sm:px-8 z-10 sticky top-0">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 -ml-2"
+              onClick={() => setIsSidebarOpen(true)}
+            >
+              <Menu className="w-5 h-5 text-slate-700 dark:text-slate-300" />
+            </Button>
+            <h1 className="text-base sm:text-lg font-semibold text-slate-800 dark:text-slate-100 tracking-tight line-clamp-1">
               {navItems.find((n) => n.path === location.pathname)?.name || "Dashboard"}
             </h1>
           </div>
@@ -128,7 +163,7 @@ export default function DashboardLayout() {
         </header>
 
         {/* Scrollable Page Content */}
-        <div className="flex-1 overflow-auto p-8 relative z-0">
+        <div className="flex-1 overflow-auto p-4 sm:p-6 md:p-8 relative z-0">
           <Outlet />
         </div>
       </main>
