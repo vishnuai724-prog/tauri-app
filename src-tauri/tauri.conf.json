@@ -40,7 +40,7 @@
   },
   "bundle": {
     "active": true,
-    "createUpdaterArtifacts": true,
+    "createUpdaterArtifacts": false,
     "targets": "all",
     "icon": [
       "icons/32x32.png",
@@ -58,11 +58,12 @@
         "language": "en-US"
       },
       "nsis": {
-        "displayLanguageSelector": true,
+        "displayLanguageSelector": false,
+        "installMode": "both",
         "installerIcon": "icons/icon.ico",
         "uninstallerIcon": "icons/icon.ico",
-        "headerImage": null,
-        "sidebarImage": null
+        "headerImage": "icons/installer-header.bmp",
+        "sidebarImage": "icons/installer-sidebar.bmp"
       },
       "webviewInstallMode": {
         "type": "downloadBootstrapper"
