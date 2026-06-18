@@ -79,15 +79,37 @@ export default function Updater() {
             break;
         }
       });
+    } catch (err) {
+      const msg = String(err);
+      console.error("Download failed:", err);
+      setError(`Download failed: ${msg}`);
+      setStatus("error");
+      toast.error("Download failed", { description: msg });
+      return;
+    }
 
+    try {
       setStatus("installing");
       await update.install();
+    } catch (err) {
+      const msg = String(err);
+      console.error("Install failed:", err);
+      setError(`Installation failed: ${msg}`);
+      setStatus("error");
+      toast.error("Installation failed", { description: msg });
+      return;
+    }
 
+    try {
       await relaunch();
     } catch (err) {
-      console.error("Update failed:", err);
-      setError(String(err));
-      setStatus("available");
+      const msg = String(err);
+      console.error("Relaunch failed:", err);
+      setError(`Update installed but relaunch failed: ${msg}. Please restart manually.`);
+      setStatus("error");
+      toast.error("Please restart manually", {
+        description: "The update was installed but the app could not restart automatically.",
+      });
     }
   }
 

@@ -66,7 +66,7 @@ export default function Dashboard() {
             >
               {/* Subtle top border gradient highlight */}
               <div
-                className={`absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${stat.trendUp ? "from-emerald-400 to-cyan-400" : "from-red-400 to-amber-400"}`}
+                className={`absolute top-0 left-0 w-full h-0.5 bg-linear-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${stat.trendUp ? "from-emerald-400 to-cyan-400" : "from-red-400 to-amber-400"}`}
               />
 
               <CardContent className="p-5">
@@ -109,7 +109,7 @@ export default function Dashboard() {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-5">
-            <div className="flex flex-col items-center justify-center h-[300px] bg-slate-50/50 dark:bg-slate-950/50 rounded-xl border border-dashed border-slate-200 dark:border-slate-800">
+            <div className="flex flex-col items-center justify-center h-75 bg-slate-50/50 dark:bg-slate-950/50 rounded-xl border border-dashed border-slate-200 dark:border-slate-800">
               <TestTube2 className="w-8 h-8 text-slate-300 dark:text-slate-700 mb-3" />
               <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
                 Data Grid Initialization Pending
