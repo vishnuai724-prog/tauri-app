@@ -73,8 +73,8 @@ export default function Login() {
       </div>
 
       {/* Right side: Login Panel */}
-      <div className="flex flex-col items-center justify-center p-8 lg:p-12">
-        <div className="w-full max-w-95 space-y-8 animate-in slide-in-from-bottom-8 fade-in duration-700">
+      <div className="flex flex-col items-center justify-center p-6 md:p-8 lg:p-12">
+        <div className="w-full max-w-md space-y-8 animate-in slide-in-from-bottom-8 fade-in duration-700">
           <div className="text-center lg:text-left">
             <div className="flex lg:hidden justify-center mb-6">
               <div className="p-3 bg-blue-900/30 border border-blue-500/20 rounded-2xl shadow-[0_0_20px_rgba(59,130,246,0.15)]">
