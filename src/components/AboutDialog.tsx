@@ -24,7 +24,7 @@ export function AboutDialog() {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-106.25">
         <DialogHeader>
           <DialogTitle>About QLIMS</DialogTitle>
           <DialogDescription>Enterprise-grade cross-platform application.</DialogDescription>
