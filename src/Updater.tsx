@@ -44,8 +44,8 @@ export default function Updater() {
   }, []);
 
   useEffect(() => {
-    // Check silently on startup
-    checkForUpdates(true);
+    // Check silently on startup (deferred to avoid synchronous setState in effect)
+    const timer = setTimeout(() => checkForUpdates(true), 0);
 
     // Listen for manual menu clicks
     const unlisten = listen("check-for-updates", () => {
@@ -53,6 +53,7 @@ export default function Updater() {
     });
 
     return () => {
+      clearTimeout(timer);
       unlisten.then((f) => f());
     };
   }, [checkForUpdates]);
