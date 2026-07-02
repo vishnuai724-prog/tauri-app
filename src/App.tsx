@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
-import Login from "./pages/Login";
-import DashboardLayout from "./pages/DashboardLayout";
-import Dashboard from "./pages/Dashboard";
+import Login from "@/pages/Login";
+import DashboardLayout from "@/pages/DashboardLayout";
+import Dashboard from "@/pages/Dashboard";
 
 function App() {
   return (
@@ -17,7 +17,6 @@ function App() {
           <Route path="/users" element={<div className="p-4">Users Page Placeholder</div>} />
           <Route path="/settings" element={<div className="p-4">Settings Page Placeholder</div>} />
         </Route>
-
         {/* Catch-all redirect to dashboard */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

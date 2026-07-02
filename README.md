@@ -8,11 +8,11 @@ An enterprise-grade, cross-platform desktop application built with **Tauri 2**, 
 
 ### All Platforms
 
-| Tool   | Version  | Install                                         |
-| ------ | -------- | ----------------------------------------------- |
-| Node.js | ≥ 18     | [nodejs.org](https://nodejs.org/)               |
-| Rust   | stable   | [rustup.rs](https://rustup.rs/)                 |
-| npm    | ≥ 9      | Bundled with Node.js                            |
+| Tool    | Version | Install                           |
+| ------- | ------- | --------------------------------- |
+| Node.js | ≥ 18    | [nodejs.org](https://nodejs.org/) |
+| Rust    | stable  | [rustup.rs](https://rustup.rs/)   |
+| npm     | ≥ 9     | Bundled with Node.js              |
 
 ### Windows
 
@@ -92,17 +92,17 @@ npm run tauri:dev
 
 ## Available Scripts
 
-| Script              | Description                                      |
-| ------------------- | ------------------------------------------------ |
-| `npm run dev`       | Start Vite dev server only (frontend)            |
-| `npm run build`     | TypeScript compile + Vite production build       |
-| `npm run tauri:dev` | Full Tauri dev mode with HMR                     |
-| `npm run tauri:build` | Production build — generates platform installer |
-| `npm run lint`      | Run ESLint (zero warnings enforced)              |
-| `npm run lint:fix`  | Run ESLint with auto-fix                         |
-| `npm run format`    | Format code with Prettier                        |
-| `npm run format:check` | Check formatting without modifying files      |
-| `npm run type-check` | Run TypeScript type checking                    |
+| Script                 | Description                                     |
+| ---------------------- | ----------------------------------------------- |
+| `npm run dev`          | Start Vite dev server only (frontend)           |
+| `npm run build`        | TypeScript compile + Vite production build      |
+| `npm run tauri:dev`    | Full Tauri dev mode with HMR                    |
+| `npm run tauri:build`  | Production build — generates platform installer |
+| `npm run lint`         | Run ESLint (zero warnings enforced)             |
+| `npm run lint:fix`     | Run ESLint with auto-fix                        |
+| `npm run format`       | Format code with Prettier                       |
+| `npm run format:check` | Check formatting without modifying files        |
+| `npm run type-check`   | Run TypeScript type checking                    |
 
 ---
 
@@ -156,11 +156,11 @@ npm run tauri:build
 
 Platform-specific installers are generated in `src-tauri/target/release/bundle/`:
 
-| Platform | Installer Types        |
-| -------- | ---------------------- |
-| Windows  | `.msi`, `.exe` (NSIS)  |
-| macOS    | `.dmg`, `.app`         |
-| Linux    | `.AppImage`, `.deb`    |
+| Platform | Installer Types       |
+| -------- | --------------------- |
+| Windows  | `.msi`, `.exe` (NSIS) |
+| macOS    | `.dmg`, `.app`        |
+| Linux    | `.AppImage`, `.deb`   |
 
 ### Creating a Release
 
