@@ -212,7 +212,6 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
         "@tauri-apps/plugin-window-state",
         "@tauri-apps/plugin-clipboard-manager",
       ],
-
     },
 
     // ── Dev Server ────────────────────────────────────────────────────────────
