@@ -40,10 +40,6 @@ export function useAppInfo(): UseAppInfoResult {
         return () => { cancelled = true; };
     }, []);
 
-    const copyright = useMemo(
-        () => data ? `© ${new Date().getFullYear()} ${data.name}. All rights reserved.` : "",
-        [data],
-    );
-
+    const copyright = useMemo(() => data ? `© ${new Date().getFullYear()} ${data.name}. All rights reserved.` : "", [data],);
     return { data, isLoading, error, copyright };
 }
