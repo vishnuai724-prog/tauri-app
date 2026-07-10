@@ -30,19 +30,28 @@ export default function Login() {
   });
 
   const onSubmit = async (data: LoginFormValues) => {
-    // Simulate an API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      // Simulate an API call
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    // Dummy authentication success
-    login({
-      id: "usr_123",
-      name: "Dr. Admin",
-      email: data.email,
-      role: "admin",
-    });
+      // Dummy authentication success
+      login(
+        {
+          id: "usr_123",
+          name: "Dr. Admin",
+          email: data.email,
+          role: "admin",
+        },
+        "dummy-jwt-token",
+      );
 
-    toast.success("Successfully logged in to QLIMS");
-    navigate("/");
+      toast.success("Successfully logged in to QLIMS");
+      navigate("/");
+    } catch {
+      toast.error("Authentication failed", {
+        description: "Please check your credentials and try again.",
+      });
+    }
   };
 
   return (

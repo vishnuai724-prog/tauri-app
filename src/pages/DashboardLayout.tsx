@@ -17,6 +17,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/mode-toggle";
 
+const NAV_ITEMS = [
+  { name: "Dashboard", path: "/", icon: LayoutDashboard },
+  { name: "Samples", path: "/samples", icon: TestTube2 },
+  { name: "Users", path: "/users", icon: Users },
+  { name: "Settings", path: "/settings", icon: Settings },
+] as const;
+
 export default function DashboardLayout() {
   const { isAuthenticated, user, logout } = useAuthStore();
   const location = useLocation();
@@ -25,13 +32,6 @@ export default function DashboardLayout() {
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
-
-  const navItems = [
-    { name: "Dashboard", path: "/", icon: LayoutDashboard },
-    { name: "Samples", path: "/samples", icon: TestTube2 },
-    { name: "Users", path: "/users", icon: Users },
-    { name: "Settings", path: "/settings", icon: Settings },
-  ];
 
   return (
     <div className="flex h-screen bg-slate-50 dark:bg-slate-950 font-sans selection:bg-cyan-500/30 overflow-hidden relative">
@@ -70,7 +70,7 @@ export default function DashboardLayout() {
         </div>
 
         <nav className="flex-1 px-4 space-y-1.5 mt-2">
-          {navItems.map((item) => {
+          {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
             return (
@@ -140,7 +140,7 @@ export default function DashboardLayout() {
               <Menu className="w-5 h-5 text-slate-700 dark:text-slate-300" />
             </Button>
             <h1 className="text-base sm:text-lg font-semibold text-slate-800 dark:text-slate-100 tracking-tight line-clamp-1">
-              {navItems.find((n) => n.path === location.pathname)?.name || "Dashboard"}
+              {NAV_ITEMS.find((n) => n.path === location.pathname)?.name || "Dashboard"}
             </h1>
           </div>
 

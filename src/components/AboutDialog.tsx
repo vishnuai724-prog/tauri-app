@@ -7,16 +7,16 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useAppInfo } from "@/hooks/useAppInfo";
 
 export function AboutDialog() {
   const [isOpen, setIsOpen] = useState(false);
+  const { data, isLoading, copyright } = useAppInfo();
 
   useEffect(() => {
-    // Listen for the 'open-about-dialog' event emitted from our Rust native menu
     const unlisten = listen("open-about-dialog", () => {
       setIsOpen(true);
     });
-
     return () => {
       unlisten.then((f) => f());
     };
@@ -34,12 +34,19 @@ export function AboutDialog() {
             {/* You can replace this with your actual logo img later */}
             <span className="text-4xl font-bold text-primary">Q</span>
           </div>
-          <div className="text-center">
-            <h3 className="font-semibold text-lg">QLIMS Version 0.1.0</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              Copyright © 2026 vishn. All rights reserved.
-            </p>
-          </div>
+          {isLoading ? (
+            <div className="text-center space-y-2 animate-pulse">
+              <div className="h-5 w-40 bg-muted rounded mx-auto" />
+              <div className="h-4 w-56 bg-muted rounded mx-auto" />
+            </div>
+          ) : (
+            <div className="text-center">
+              <h3 className="font-semibold text-lg">QLIMS Version {data?.version}</h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                {copyright}
+              </p>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>

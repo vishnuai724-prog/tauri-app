@@ -1,25 +1,25 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Suspense } from "react";
+import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
-import Login from "@/pages/Login";
-import DashboardLayout from "@/pages/DashboardLayout";
-import Dashboard from "@/pages/Dashboard";
+import { useInitWindow } from "@/hooks/useInitWindow";
+import AppRoutes from "@/routes/AppRoutes";
+
+// ─── Route loading fallback ───────────────────────────────────────────────────
+function RouteFallback() {
+  return (
+    <div className="flex h-screen items-center justify-center">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+    </div>
+  );
+}
 
 function App() {
+  useInitWindow();
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-
-        {/* Protected Dashboard Routes */}
-        <Route element={<DashboardLayout />}>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/samples" element={<div className="p-4">Samples Page Placeholder</div>} />
-          <Route path="/users" element={<div className="p-4">Users Page Placeholder</div>} />
-          <Route path="/settings" element={<div className="p-4">Settings Page Placeholder</div>} />
-        </Route>
-        {/* Catch-all redirect to dashboard */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <Suspense fallback={<RouteFallback />}>
+        <AppRoutes />
+      </Suspense>
       <Toaster position="top-right" richColors />
     </BrowserRouter>
   );

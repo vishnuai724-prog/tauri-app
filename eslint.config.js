@@ -4,19 +4,18 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 
 export default tseslint.config(
-  // Global ignores
   {
-    ignores: ["dist/**", "src-tauri/**", "node_modules/**", "*.config.js", "*.config.ts"],
+    ignores: [
+      "dist/**",
+      "src-tauri/**",
+      "node_modules/**",
+      "*.config.js",
+      "*.config.ts",
+    ],
   },
-
-  // Base JS recommended rules
   js.configs.recommended,
-
-  // TypeScript strict rules
   ...tseslint.configs.strict,
   ...tseslint.configs.stylistic,
-
-  // React-specific rules
   {
     plugins: {
       "react-hooks": reactHooks,
@@ -24,14 +23,14 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
     },
   },
-
-  // Enterprise-strict overrides
   {
     rules: {
-      // TypeScript
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
@@ -42,8 +41,6 @@ export default tseslint.config(
       ],
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-non-null-assertion": "error",
-
-      // General
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "no-debugger": "error",
       "no-duplicate-imports": "error",
