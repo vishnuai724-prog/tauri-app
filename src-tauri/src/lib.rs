@@ -8,9 +8,6 @@ use thiserror::Error;
 // ──────────────────────────────────────────────────
 // Error Handling
 // ──────────────────────────────────────────────────
-
-/// Application-level error type for structured error handling.
-/// All Tauri commands should return `Result<T, AppError>` instead of panicking.
 #[derive(Debug, Error)]
 pub enum AppError {
     #[error("Validation error: {0}")]
@@ -29,8 +26,6 @@ pub enum AppError {
     Serialization(#[from] serde_json::Error),
 }
 
-/// Serialize `AppError` for the frontend — Tauri commands require
-/// error types to implement `Serialize`.
 impl Serialize for AppError {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
@@ -52,7 +47,6 @@ fn greet(name: &str) -> Result<String, AppError> {
     if name.trim().is_empty() {
         return Err(AppError::Validation("Name cannot be empty".to_string()));
     }
-
     info!("Greeting user: {name}");
     Ok(format!("Hello, {name}! You've been greeted from Rust!"))
 }
