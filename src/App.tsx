@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Toaster } from "@/components/ui/sonner";
-import { useInitWindow } from "@/hooks/useInitWindow";
-import AppRoutes from "@/routes/AppRoutes";
+import { Toaster } from "@/shared/components/ui/Sonner";
+import { useInitWindow } from "@/shared/hooks/useInitWindow";
+import AppRoutes from "@/app/routes/AppRoutes";
 
 // ─── Route loading fallback ───────────────────────────────────────────────────
 function RouteFallback() {

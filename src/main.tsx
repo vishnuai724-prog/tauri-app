@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ThemeProvider } from "@/components/theme-provider";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { AboutDialog } from "@/components/AboutDialog";
+import { ThemeProvider } from "@/shared/providers/ThemeProvider";
+import { ErrorBoundary } from "@/shared/components/ErrorBoundary";
+import { AboutDialog } from "@/features/about";
+import { UpdaterDialog } from "@/features/updater";
 import App from "./App";
-import Updater from "./Updater";
-import "./index.css";
+import "./styles/globals.css";
 
 const queryClient = new QueryClient();
 
@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="dark" storageKey="qlims-theme">
           <AboutDialog />
-          <Updater />
+          <UpdaterDialog />
           <App />
         </ThemeProvider>
       </QueryClientProvider>
