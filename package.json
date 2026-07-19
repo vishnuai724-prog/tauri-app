@@ -14,6 +14,9 @@
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "clean": "node -e \"const fs=require('fs'); fs.rmSync('dist', {recursive:true, force:true}); fs.rmSync('src-tauri/target', {recursive:true, force:true});\"",
     "lint": "eslint src --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --fix",
     "format": "oxfmt .",
@@ -22,7 +25,7 @@
     "rust:check": "cargo check --manifest-path src-tauri/Cargo.toml",
     "rust:clippy": "cargo clippy --manifest-path src-tauri/Cargo.toml -- -D warnings",
     "rust:fmt": "cargo fmt --manifest-path src-tauri/Cargo.toml -- --check",
-    "check:all": "npm run type-check && npm run lint && npm run format:check && npm run rust:check && npm run rust:clippy && npm run rust:fmt"
+    "check:all": "npm run type-check && npm run lint && npm run test -- --run && npm run format:check && npm run rust:check && npm run rust:clippy && npm run rust:fmt"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

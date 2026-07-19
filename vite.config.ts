@@ -71,17 +71,12 @@ function classifyChunk(id: string): string | undefined {
     return "vendor";
   }
 
-  // 10. QLIMS feature modules — coarse split by source path convention
-  //     Adjust patterns to match your actual directory structure.
-  if (id.includes("/src/pages/") || id.includes("/src/routes/")) {
-    return "app-pages";
+  // 10. QLIMS feature modules — split by feature-sliced architecture
+  if (id.includes("/src/app/")) {
+    return "app-routes";
   }
 
-  if (
-    /\/src\/(features|modules)\/(samples|patients|tests|results|instruments|inventory|reports|qc|audit)\//.test(
-      id,
-    )
-  ) {
+  if (/\/src\/features\/(auth|dashboard|shell|updater|about)\//.test(id)) {
     return "app-features";
   }
 
@@ -156,18 +151,6 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
-        "@components": path.resolve(__dirname, "./src/components"),
-        "@hooks": path.resolve(__dirname, "./src/hooks"),
-        "@utils": path.resolve(__dirname, "./src/utils"),
-        "@store": path.resolve(__dirname, "./src/store"),
-        "@assets": path.resolve(__dirname, "./src/assets"),
-        "@pages": path.resolve(__dirname, "./src/pages"),
-        "@types": path.resolve(__dirname, "./src/types"),
-        "@lib": path.resolve(__dirname, "./src/lib"),
-        "@features": path.resolve(__dirname, "./src/features"),
-        "@services": path.resolve(__dirname, "./src/services"),
-        "@constants": path.resolve(__dirname, "./src/constants"),
-        "@context": path.resolve(__dirname, "./src/context"),
       },
       // Ensure single React instance in monorepos or when using npm link
       dedupe: ["react", "react-dom"],

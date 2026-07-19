@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { FlaskConical, LogOut, X } from "lucide-react";
 import { Button } from "@/shared/components/ui/Button";
-import { useAuthStore } from "@/features/auth/store/useAuthStore";
+import { useAuthStore } from "@/features/auth";
 import { NAV_ITEMS } from "../../constants/shell.constants";
 
 interface SidebarProps {

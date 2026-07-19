@@ -4,13 +4,12 @@ import { Button } from "@/shared/components/ui/Button";
 import { Label } from "@/shared/components/ui/Label";
 import { FlaskConical, Fingerprint, Network } from "lucide-react";
 import bgImage from "@/assets/login-bg.jpg";
-import "./LoginForm.css";
 
 export function LoginForm() {
   const { register, handleSubmit, errors, isSubmitting } = useLoginForm();
 
   return (
-    <div className="login-page">
+    <div className="grid min-h-screen grid-cols-1 bg-slate-950 lg:grid-cols-2">
       {/* Left side: Beautiful AI Background */}
       <div className="relative hidden lg:block overflow-hidden">
         <div className="absolute inset-0 z-10 bg-linear-to-r from-blue-950/40 to-slate-950/80 mix-blend-multiply" />
