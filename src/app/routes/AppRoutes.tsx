@@ -2,9 +2,9 @@ import { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 // ─── Lazy-loaded pages ────────────────────────────────────────────────────────
-const LoginPage = lazy(() => import("@/features/auth/pages/LoginPage"));
+const LoginPage = lazy(() => import("@/features/auth/pages/LoginPage").then(m => ({ default: m.LoginPage })));
 const ShellPage = lazy(() => import("@/features/shell/pages/ShellPage"));
-const DashboardPage = lazy(() => import("@/features/dashboard/pages/DashboardPage"));
+const DashboardPage = lazy(() => import("@/features/dashboard/pages/DashboardPage").then(m => ({ default: m.DashboardPage })));
 
 export default function AppRoutes() {
   return (

@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { FlaskConical, LogOut, X } from "lucide-react";
-import { Button } from "@/shared/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/features/auth";
+import { cn } from "@/shared/utils/cn";
 import { NAV_ITEMS } from "../../constants/shell.constants";
 
 interface SidebarProps {
@@ -79,7 +80,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         {/* User Profile Footer */}
         <div className="p-4 m-4 rounded-xl bg-slate-100/50 dark:bg-slate-900/50 border border-slate-200/50 dark:border-slate-800/50 backdrop-blur-md">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 rounded-full bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xs font-bold text-white shadow-md">
+            <div className="w-8 h-8 rounded-full bg-linear-to-br from-blue-500 to-blue-600 flex items-center justify-center text-xs font-bold text-white shadow-md">
               {user?.name?.charAt(0) || "U"}
             </div>
             <div className="flex-1 min-w-0">
@@ -87,18 +88,18 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 {user?.name}
               </p>
               <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate uppercase tracking-wider font-medium">
-                {user?.role.replace("_", " ")}
+                {user?.role?.replace("_", " ")}
               </p>
             </div>
           </div>
           <Button
             variant="ghost"
-            size="xs"
-            className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/30 text-xs"
+            size="sm"
+            className={cn("w-full justify-start gap-3 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/30 text-xs", !isOpen && "justify-center px-0")}
             onClick={logout}
           >
-            <LogOut className="w-3.5 h-3.5 mr-2" />
-            End Session
+            <LogOut className="w-3.5 h-3.5" />
+            <span className={cn(isOpen ? "inline" : "hidden")}>End Session</span>
           </Button>
         </div>
       </aside>

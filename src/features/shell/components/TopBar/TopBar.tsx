@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { Menu, Bell, Search } from "lucide-react";
-import { Button } from "@/shared/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/shared/components/ui/Input";
 import { ModeToggle } from "@/shared/components/ModeToggle";
 import { NAV_ITEMS } from "../../constants/shell.constants";

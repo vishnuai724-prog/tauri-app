@@ -1,20 +1,57 @@
-import * as React from "react";
-import { Input as InputPrimitive } from "@base-ui/react/input";
+import React, { useId } from 'react';
+import { cn } from '../../../utils/cn';
+import './Input.css';
 
-import { cn } from "@/shared/utils/cn";
-
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
-  return (
-    <InputPrimitive
-      type={type}
-      data-slot="input"
-      className={cn(
-        "flex h-8 w-full min-w-0 rounded-md border border-input bg-transparent px-2.5 py-1 text-xs transition-colors outline-none file:inline-flex file:h-5 file:border-0 file:bg-transparent file:text-xs file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/20 md:text-xs dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40",
-        className,
-      )}
-      {...props}
-    />
-  );
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string | undefined;
+  hint?: string;
+  wrapperClassName?: string;
 }
 
-export { Input };
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ label, error, hint, className, wrapperClassName, id, ...props }, ref) => {
+    const generatedId = useId();
+    const inputId = id || generatedId;
+    const errorId = `${inputId}-error`;
+    const hintId = `${inputId}-hint`;
+
+    return (
+      <div className={cn('input-group', wrapperClassName)}>
+        {label && (
+          <label htmlFor={inputId} className="input-label">
+            {label}
+          </label>
+        )}
+        <div className="input-wrapper">
+          <input
+            id={inputId}
+            ref={ref}
+            className={cn(
+              'input-field',
+              error && 'input-field--error',
+              className
+            )}
+            aria-invalid={error ? 'true' : undefined}
+            aria-describedby={
+              error ? errorId : hint ? hintId : undefined
+            }
+            {...props}
+          />
+        </div>
+        {error && (
+          <p id={errorId} className="input-error" role="alert">
+            {error}
+          </p>
+        )}
+        {!error && hint && (
+          <p id={hintId} className="input-hint">
+            {hint}
+          </p>
+        )}
+      </div>
+    );
+  }
+);
+
+Input.displayName = 'Input';

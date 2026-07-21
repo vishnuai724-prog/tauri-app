@@ -7,6 +7,7 @@ import { AboutDialog } from "@/features/about";
 import { UpdaterDialog } from "@/features/updater";
 import App from "./App";
 import "./styles/globals.css";
+import "./App.css";
 
 const queryClient = new QueryClient();
 
@@ -14,7 +15,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider defaultTheme="dark" storageKey="qlims-theme">
+        <ThemeProvider defaultTheme="system" storageKey="qlims-theme">
           <AboutDialog />
           <UpdaterDialog />
           <App />

@@ -1,27 +1,27 @@
-// ─── Auth feature types ───────────────────────────────────────────────────────
-
-/** Supported user roles within the application */
-export type UserRole = "admin" | "lab_tech";
-
-/** Authenticated user entity */
 export interface AuthUser {
   id: string;
-  name: string;
   email: string;
-  role: UserRole;
+  name?: string;
+  avatarUrl?: string;
+  role?: string;
 }
 
-/** Global authentication state shape */
+export interface LoginCredentials {
+  email: string;
+  password?: string;
+  rememberMe: boolean;
+}
+
 export interface AuthState {
-  isAuthenticated: boolean;
   user: AuthUser | null;
   token: string | null;
-  login: (user: AuthUser, token: string) => void;
+  refreshToken: string | null;
+  isAuthenticated: boolean;
+  status: 'idle' | 'loading' | 'success' | 'error';
+  error: string | null;
+  loginApi: (credentials: LoginCredentials) => Promise<void>;
+  loginMock: (user: AuthUser, token: string, refreshToken?: string) => void;
   logout: () => void;
-}
-
-/** Login form field values */
-export interface LoginFormValues {
-  email: string;
-  password: string;
+  clearError: () => void;
+  setTokens: (token: string, refreshToken: string) => void;
 }

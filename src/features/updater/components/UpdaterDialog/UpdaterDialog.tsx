@@ -1,5 +1,5 @@
 import { useUpdater } from "../../hooks/useUpdater";
-import { Button } from "@/shared/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,

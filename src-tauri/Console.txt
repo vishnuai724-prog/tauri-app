@@ -1,0 +1,2 @@
+[Error] Update check failed: – "None of the fallback platforms `[\"linux-x86_64\"]` were found in the response `platforms` object"
+	(anonymous function) (useUpdater.ts:24)
