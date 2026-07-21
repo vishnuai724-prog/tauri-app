@@ -8,10 +8,8 @@ import { ShellLayout } from "../components/ShellLayout";
  */
 export default function ShellPage() {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
-
   return <ShellLayout />;
 }
