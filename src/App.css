@@ -1,0 +1,13 @@
+/**
+ * App.css
+ * -------
+ * Root application shell styles.
+ * Provides the top-level flex column that allows child pages
+ * (LoginPage, ProfilePage) to stretch to fill the viewport.
+ */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}

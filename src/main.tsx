@@ -1,37 +1,26 @@
-/* eslint-disable react-refresh/only-export-components */
-import React, { useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/shared/providers/ThemeProvider";
+import { ErrorBoundary } from "@/shared/components/ErrorBoundary";
+import { AboutDialog } from "@/features/about";
+import { UpdaterDialog } from "@/features/updater";
 import App from "./App";
-import "./index.css";
-import { getCurrentWindow } from "@tauri-apps/api/window";
-
-import { AboutDialog } from "@/components/AboutDialog";
-import Updater from "./Updater";
+import "./styles/globals.css";
+import "./App.css";
 
 const queryClient = new QueryClient();
 
-function InitWindow() {
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        getCurrentWindow().show();
-      });
-    });
-  }, []);
-  return null;
-}
-
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="dark" storageKey="qlims-theme">
-        <InitWindow />
-        <AboutDialog />
-        <Updater />
-        <App />
-      </ThemeProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider defaultTheme="system" storageKey="qlims-theme">
+          <AboutDialog />
+          <UpdaterDialog />
+          <App />
+        </ThemeProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   </React.StrictMode>,
 );

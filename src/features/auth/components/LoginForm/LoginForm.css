@@ -1,0 +1,284 @@
+/**
+ * LoginForm.css
+ * -------------
+ * Styles for the LoginForm component.
+ * Covers the card container, social SSO button, email/password divider,
+ * form layout, custom checkbox, and password-toggle button.
+ */
+
+/* ─────────────────────────────────────────────
+   Card container — wraps the entire login form
+   ───────────────────────────────────────────── */
+.login-card {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+@media (max-width: 479px) {
+  .login-card {
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-card {
+    padding: 20px 16px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 1023px) {
+  .login-card {
+    padding: 32px 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .login-card {
+    padding: 36px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .login-card {
+    background: rgba(22, 23, 29, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* LoginForm specific styles */
+.btn-social {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--social-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-h);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-social:hover {
+  background: var(--border-color);
+}
+
+.btn-social__icon {
+  flex-shrink: 0;
+}
+
+.login-divider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.login-divider:not(:empty)::before {
+  margin-right: 12px;
+}
+
+.login-divider:not(:empty)::after {
+  margin-left: 12px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.form-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+.form-link {
+  font-size: 13px;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.form-link:hover {
+  opacity: 0.8;
+}
+
+.form-link--bold {
+  font-weight: 600;
+}
+
+.form-link--muted {
+  color: var(--text);
+}
+
+.form-link--muted:hover {
+  color: var(--text-h);
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--text-h);
+  background: var(--bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--accent-color-bg);
+}
+
+.form-input--error {
+  border-color: #ef4444;
+}
+
+.form-input--error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.form-error-text {
+  font-size: 13px;
+  color: #ef4444;
+  margin: 0;
+  text-align: left;
+}
+
+.form-input--padded {
+  padding-right: 44px;
+}
+
+.input-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.2s ease;
+}
+
+.input-toggle:hover {
+  color: var(--text-h);
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-custom {
+  height: 18px;
+  width: 18px;
+  background-color: var(--bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.checkbox-label:hover .checkbox-input ~ .checkbox-custom {
+  border-color: var(--accent-color);
+}
+
+.checkbox-input:checked ~ .checkbox-custom {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.checkbox-custom::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-input:checked ~ .checkbox-custom::after {
+  display: block;
+}
+
+/* Removed: .w-full was a Tailwind utility name defined outside @layer,
+   which would shadow Tailwind's own @layer utilities version for all
+   elements on the page, not just this component. Use the Tailwind
+   class directly instead. */

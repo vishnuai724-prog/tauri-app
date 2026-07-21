@@ -1,0 +1,109 @@
+/* LoginPage layout styles */
+.login-page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+/* ---------- Decorative background blobs ---------- */
+.login-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.45;
+  z-index: 0;
+}
+
+.login-bg-blob--top {
+  width: 480px;
+  height: 480px;
+  background: var(--accent-color-bg);
+  top: -160px;
+  right: -120px;
+}
+
+.login-bg-blob--bottom {
+  width: 360px;
+  height: 360px;
+  background: var(--accent-color-bg);
+  bottom: -120px;
+  left: -80px;
+}
+
+/* ---------- Container ---------- */
+.login-container {
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: loginFadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes loginFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Brand / Header ---------- */
+.login-brand {
+  text-align: center;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.login-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.login-title {
+  font-family: var(--heading) !important;
+  font-size: 30px !important;
+  font-weight: 600;
+  color: var(--text-h) !important;
+  letter-spacing: -0.6px !important;
+  margin: 0 0 8px !important;
+  line-height: 1.2;
+}
+
+.login-subtitle {
+  font-size: 15px;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ---------- Footer & Terms ---------- */
+.login-footer {
+  margin-top: 24px !important;
+  font-size: 14px;
+  color: var(--text);
+  text-align: center;
+}
+
+.login-terms {
+  margin-top: 32px !important;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text);
+  text-align: center;
+  max-width: 320px;
+}
